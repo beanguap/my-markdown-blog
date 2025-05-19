@@ -1,13 +1,45 @@
+```
+\
+```
+[[ ┌─────────────────────────────────────────────────────────────────┐ ]],
+      [[ │                     ,                                           │ ]],
+      [[ │                     `-._           __                          │ ]],
+      [[ │                      \\  -..____,.\'  `.                        │ ]],
+      [[ │                       :  )       :      :                      │ ]],
+      [[ │                        ;\'        \'   ;  | :                     │ ]],
+      [[ │                        )..      .. .:.`.; :                     │ ]],
+      [[ │                       /::...  .:::...   ` ;                     │ ]],
+      [[ │                       `:o>   /\\o_>        : `.                  │ ]],
+      [[ │                      `-`.__ ;   __..--- /:.   \\                 │ ]],
+      [[ │                     ==== \\_/   ;=====_.':.     ;                │ ]],
+      [[ │                       ,/\'`--\'...\`--....        ;                │ ]],
+      [[ │                            ;                    ;               │ ]],
+      [[ │                        . \'                       ;              │ ]],
+      [[ │                      .\'     ..     ,      .       ;             │ ]],
+      [[ │                     :       ::..  /      ;::.     |             │ ]],
+      [[ │                    /      `.;::.  |       ;:..    ;             │ ]],
+      [[ │                   :         |:.   :       ;:.    ;              │ ]],
+      [[ │                   :         ::     ;:..   |.    ;               │ ]],
+      [[ │                    :       :;      :::....|     |               │ ]],
+      [[ │                    /\\     ,/ \\      ;:::::;     ;               │ ]],
+      [[ │                  .:. \\:..|    :     ; \'.--|     ;               │ ]],
+      [[ │                 ::.  :\'\'  `-.,,;     ;\'   ;     ;               │ ]],
+      [[ │              .-\'. _.\'\\      / `;      \\,__:      \\              │ ]],
+      [[ │              `---\'    `----\'   ;      /    \\,.,,,/              │ ]],
+      [[ │                                 `----`                          │ ]],
+      [[ └─────────────────────────────────────────────────────────────────┘ ]],
+      [[                              Jeriel Martinez Flores                                ]]
+
 ---
 title: "About Me / Welcome!"
 date: "2025-05-18"
-description: "A little bit about who I am and what you'll find here."
+description: "A little bit about who I am and what you\'ll find here."
 tags: ["Introduction", "Meta"]
 ---
 
 # Welcome to My Corner of the Web!
 
-Hello there! I'm [Your Name/Handle], and this is my personal space to share my journey through the worlds of engineering, code, music, cooking, and pretty much anything else that captures my curiosity.
+Hello there! I\'m Jeriel Martinez Flores, and this is my personal space to share my journey through the worlds of engineering, code, music, cooking, and pretty much anything else that captures my curiosity.
 
 **What drives me?** A relentless desire to understand how things work, to build cool stuff, and to continuously learn. I believe in the power of sharing knowledge, the beauty of a well-crafted algorithm, the satisfaction of a perfectly soldered joint, and the joy of a delicious meal made from scratch.
 
@@ -17,7 +49,7 @@ Hello there! I'm [Your Name/Handle], and this is my personal space to share my j
 *   Thoughts on technology, AI, and their impact.
 *   My experiments in the kitchen.
 *   Explorations in music and audio tech.
-*   Reviews and thoughts on gadgets I use and love (or don't).
+*   Reviews and thoughts on gadgets I use and love (or don\'t).
 *   And probably some random historical tidbits that I find fascinating.
 
 Thanks for stopping by!

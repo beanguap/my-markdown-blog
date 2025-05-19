@@ -1,5 +1,5 @@
 :root {
-  /* Light Theme (Default) */
+  /* Light Theme (Default) - Remains largely unchanged unless specified */
   --bg-color: #f4f4f4;
   --text-color: #333;
   --link-color: #2E8B57;
@@ -16,8 +16,8 @@
   --heading-border-color: #dcdcdc;
   --blockquote-bg-color: #f9f9f9;
   --blockquote-border-color: #999;
-  --code-bg-color: #f0f0f0;
-  --code-text-color: #333;
+  --code-bg-color: #f0f0f0; /* Light theme code background */
+  --code-text-color: #333; /* Light theme code text */
   --inline-code-bg-color: #e0e0e0;
   --inline-code-text-color: #222;
   --inline-code-border-color: #d0d0d0;
@@ -44,34 +44,34 @@
 }
 
 :root.dark-mode {
-  /* Dark Theme */
-  --bg-color: #1e1e1e;
-  --text-color: #d4d4d4;
-  --link-color: #4EC9B0; /* Tealish green for dark mode links */
-  --link-hover-color: #3AA99F;
-  --border-color: #444;
-  --navbar-bg-color: #252526;
-  --content-bg-color: #1e1e1e;
-  --content-border-color: #333;
-  --sidebar-bg-color: #252526;
-  --sidebar-border-color: #333;
-  --sidebar-link-active-bg: #4EC9B0;
-  --sidebar-link-active-text: #1e1e1e;
-  --sidebar-link-hover-bg: #333;
-  --heading-border-color: #3a3a3a;
-  --blockquote-bg-color: #2a2a2a;
-  --blockquote-border-color: #555;
-  --code-bg-color: #282c34 !important; /* Often specific for dark code themes */
-  --code-text-color: #abb2bf !important;
-  --inline-code-bg-color: #3a3a3a;
-  --inline-code-text-color: #c8c8c8;
-  --inline-code-border-color: #4a4a4a;
-  --button-bg-color: #333;
-  --button-text-color: #d4d4d4;
-  --button-border-color: #555;
-  --button-hover-bg-color: #444;
-  --button-hover-border-color: #666;
-  --focus-outline-color: #4EC9B0;
+  /* Dark Theme - Using your provided colors */
+  --bg-color: #031C07;
+  --text-color: #e0e6cb;
+  --link-color: #6E857D; /* color12 */
+  --link-hover-color: #9FA98D; /* color14 for a lighter hover */
+  --border-color: #384F61; /* color2 */
+  --navbar-bg-color: #031C07; /* Same as bg for minimal look */
+  --content-bg-color: #031C07;
+  --content-border-color: #384F61; /* color2 */
+  --sidebar-bg-color: #031C07; /* Same as bg for minimal look */
+  --sidebar-border-color: #384F61; /* color2 */
+  --sidebar-link-active-bg: #6E857D; /* color12 */
+  --sidebar-link-active-text: #031C07; /* bg color for contrast */
+  --sidebar-link-hover-bg: #384F61; /* color2 */
+  --heading-border-color: #506770; /* color3 */
+  --blockquote-bg-color: #054A61; /* color1 */
+  --blockquote-border-color: #6E857D; /* color4 */
+  --code-bg-color: #054A61; /* color1 - for distinct code blocks */
+  --code-text-color: #e0e6cb; /* foreground */
+  --inline-code-bg-color: #384F61; /* color2 */
+  --inline-code-text-color: #e0e6cb; /* foreground */
+  --inline-code-border-color: #506770; /* color3 */
+  --button-bg-color: #384F61; /* color2 */
+  --button-text-color: #e0e6cb; /* foreground */
+  --button-border-color: #506770; /* color3 */
+  --button-hover-bg-color: #506770; /* color3 */
+  --button-hover-border-color: #6E857D; /* color4 */
+  --focus-outline-color: #6E857D; /* color4 */
 
   color-scheme: dark;
 }

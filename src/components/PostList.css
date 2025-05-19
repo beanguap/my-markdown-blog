@@ -1,0 +1,74 @@
+/* CSS for PostList component */
+.post-list-container {
+  /* Styles for the container of the post list */
+}
+
+.post-list-title {
+  /* Styles for the title of the post list page */
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--heading-border-color);
+  padding-bottom: 0.5rem;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-list-item {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-list-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.post-link {
+  text-decoration: none;
+  color: inherit; /* Inherit text color from parent */
+  display: block; /* Make the entire area clickable */
+}
+
+.post-link:hover .post-title {
+  color: var(--link-hover-color);
+}
+
+.post-title {
+  font-size: 1.75rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--text-color); /* Ensure title uses theme color */
+  transition: color 0.2s ease-in-out;
+}
+
+.post-date {
+  font-size: 0.85rem;
+  color: var(--text-color); /* Use a slightly subdued text color */
+  opacity: 0.8;
+  margin-bottom: 0.75rem;
+}
+
+.post-summary {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.error-message {
+  color: red;
+  padding: 1rem;
+  border: 1px solid red;
+  background-color: #ffe0e0;
+}
+
+/* Styles for loading state if needed */
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+}

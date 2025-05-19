@@ -1,63 +1,88 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import matter from 'gray-matter';
+import { getAllPostsMetadata } from '../utils/posts';
+import './Sidebar.css';
 
-// Use import.meta.glob to get all markdown files from the posts directory
-const files = import.meta.glob('../posts/*.md', { query: '?raw', import: 'default', eager: true });
-
-const posts = Object.entries(files)
-  .map(([path, rawContent]) => {
-    const { data } = matter(rawContent);
-    const slug = path.split('/').pop().replace(/\\.md$/, '');
-    return {
-      slug,
-      title: data.title || 'Untitled Post',
-      date: data.date || new Date().toISOString(),
-      tags: data.tags || [], // Added tags
-      description: data.description || '' // Added description
-    };
-  })
-  .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-export default function Sidebar() {
+function Sidebar() {
+  const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const location = useLocation();
-  const [searchTerm, setSearchTerm] = useState(''); // Added searchTerm state
 
-  const filteredPosts = posts.filter(post => {
+  useEffect(() => {
+    async function fetchPostsData() {
+      try {
+        setIsLoading(true);
+        const metadata = await getAllPostsMetadata();
+        setPosts(metadata);
+        setFilteredPosts(metadata); // Initially, all posts are shown
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching posts for sidebar:", err);
+        setError("Failed to load navigation.");
+        setPosts([]);
+        setFilteredPosts([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchPostsData();
+  }, []);
+
+  useEffect(() => {
     const term = searchTerm.toLowerCase();
-    const titleMatch = post.title.toLowerCase().includes(term);
-    const tagsMatch = post.tags.some(tag => tag.toLowerCase().includes(term));
-    const descriptionMatch = post.description.toLowerCase().includes(term);
-    return titleMatch || tagsMatch || descriptionMatch;
-  });
+    if (!term) {
+      setFilteredPosts(posts);
+      return;
+    }
+    const filtered = posts.filter(post => {
+      return (
+        post.title.toLowerCase().includes(term) ||
+        (post.description && post.description.toLowerCase().includes(term)) ||
+        (post.tags && post.tags.some(tag => tag.toLowerCase().includes(term)))
+      );
+    });
+    setFilteredPosts(filtered);
+  }, [searchTerm, posts]);
+
+  if (isLoading) {
+    return <aside className="sidebar-container">Loading navigation...</aside>;
+  }
+
+  if (error) {
+    return <aside className="sidebar-container error-message">{error}</aside>;
+  }
 
   return (
-    <aside className="sidebar">
-      <input
-        type="text"
-        placeholder="Search posts..."
-        className="sidebar-search"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <h3 className="sidebar-title">Posts</h3>
-      <nav>
-        <ul>
-          {filteredPosts.map((post) => { // Changed to filteredPosts
-            const isActive = location.pathname === `/posts/${post.slug}`;
-            return (
-              <li key={post.slug}>
-                <Link
-                  to={`/posts/${post.slug}`}
-                  className={isActive ? 'active-link' : ''}
-                >
+    <aside className="sidebar-container">
+      <div className="sidebar-search">
+        <input
+          type="text"
+          placeholder="Search posts..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="sidebar-search-input"
+        />
+      </div>
+      <nav className="sidebar-nav">
+        <ul className="sidebar-post-list">
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map(post => (
+              <li key={post.slug} className={`sidebar-post-item ${location.pathname === `/posts/${post.slug}` ? 'active' : ''}`}>
+                <Link to={`/posts/${post.slug}`} className="sidebar-post-link">
                   {post.title}
                 </Link>
               </li>
-            );
-          })}
+            ))
+          ) : (
+            <li className="sidebar-no-results">No posts found.</li>
+          )}
         </ul>
       </nav>
     </aside>
   );
 }
+
+export default Sidebar;

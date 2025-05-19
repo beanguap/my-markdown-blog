@@ -1,0 +1,119 @@
+/* CSS for Post component */
+.post-container {
+  /* Styles for the main container of a single post */
+}
+
+.post-content {
+  /* Styles for the article content itself */
+}
+
+.post-title-main {
+  font-size: 2.5rem; /* Specific size for individual post title */
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  line-height: 1.2;
+}
+
+.post-meta {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--heading-border-color);
+  padding-bottom: 0.75rem;
+}
+
+.post-tags {
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  display: inline-block;
+  background-color: var(--inline-code-bg-color);
+  color: var(--inline-code-text-color);
+  padding: 0.25em 0.5em;
+  margin-right: 0.5em;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  border: 1px solid var(--inline-code-border-color);
+}
+
+/* Markdown content styling */
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  color: var(--text-color);
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.post-content p {
+  line-height: 1.7;
+  margin-bottom: 1em;
+}
+
+.post-content a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.post-content a:hover {
+  color: var(--link-hover-color);
+}
+
+.post-content ul,
+.post-content ol {
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.post-content li {
+  margin-bottom: 0.5em;
+}
+
+.post-content blockquote {
+  background-color: var(--blockquote-bg-color);
+  border-left: 4px solid var(--blockquote-border-color);
+  padding: 0.5em 1em;
+  margin: 1.5em 0;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.post-content pre {
+  background-color: var(--code-bg-color);
+  color: var(--code-text-color);
+  padding: 1em;
+  overflow-x: auto;
+  border-radius: 3px;
+  margin: 1.5em 0;
+}
+
+.post-content code {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* For inline code, if not handled by SyntaxHighlighter or specific classes */
+.post-content p > code,
+.post-content li > code,
+.post-content h1 > code, /* etc. for other elements */
+.post-content h2 > code,
+.post-content h3 > code {
+  background-color: var(--inline-code-bg-color);
+  color: var(--inline-code-text-color);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  border: 1px solid var(--inline-code-border-color);
+}
+
+.error-message {
+  color: red;
+  padding: 1rem;
+  border: 1px solid red;
+  background-color: #ffe0e0;
+}

@@ -1,47 +1,66 @@
-import matter from "gray-matter";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getAllPostsMetadata } from "../utils/posts"; // Import the new utility
+import "./PostList.css";
 
-const files = import.meta.glob("../posts/*.md", { query: "?raw", import: "default", eager: true });
+function PostList() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const posts = Object.entries(files)
-  .map(([path, content]) => {
-    const { data, content: mdContent } = matter(content);
-    const slug = path.split("/").pop().replace(/\.md$/, "");
-
-    // Attempt to find the first paragraph for a summary
-    let summary = data.description || ""; // Use description from frontmatter if available
-    if (!summary) {
-      const firstParagraphMatch = mdContent.match(/^([A-Za-z0-9_,\s\-'.()]+)(?=\n\n|\r\n\r\n|$)/m);
-      if (firstParagraphMatch && firstParagraphMatch[0].trim().length > 10) {
-        // Basic check for meaningful content
-        summary = firstParagraphMatch[0].trim().substring(0, 150) + "...";
-      } else {
-        summary = mdContent.substring(0, 150) + "..."; // Fallback if no clear paragraph
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        setLoading(true);
+        const postsData = await getAllPostsMetadata();
+        setPosts(postsData);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching posts metadata:", err);
+        setError("Failed to load posts. Please try again later.");
+        setPosts([]);
+      } finally {
+        setLoading(false);
       }
     }
+    fetchPosts();
+  }, []);
 
-    return {
-      slug,
-      title: data.title || "Untitled Post",
-      date: data.date || new Date().toISOString().split("T")[0],
-      description: summary, // Use the generated or frontmatter summary
-    };
-  })
-  .sort((a, b) => new Date(b.date) - new Date(a.date));
+  if (loading) {
+    return <div className="post-list-container content-pane">Loading posts...</div>;
+  }
 
-export default function PostList() {
+  if (error) {
+    return <div className="post-list-container content-pane error-message">{error}</div>;
+  }
+
+  if (posts.length === 0) {
+    return <div className="post-list-container content-pane">No posts found.</div>;
+  }
+
   return (
-    <div className="post-list content-pane">
-      <h1>Posts</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <Link to={`/posts/${post.slug}`}>{post.title}</Link>
-            <small>{new Date(post.date).toLocaleDateString()}</small>
-            <p>{post.description}</p>
-          </li>
-        ))}
+    <div className="post-list-container content-pane">
+      <h1 className="post-list-title">Blog Posts</h1>
+      <ul className="post-list">
+        {posts.map((post) => {
+          // Use frontmatter description if available, otherwise generate a short excerpt
+          // For simplicity, we'll just use the description or a placeholder.
+          // More complex excerpt generation can be added here if needed.
+          const summary = post.description || "Read more...";
+
+          return (
+            <li key={post.slug} className="post-list-item">
+              <Link to={`/posts/${post.slug}`} className="post-link">
+                <h2 className="post-title">{post.title}</h2>
+                <p className="post-date">{new Date(post.date).toLocaleDateString()}</p>
+                <p className="post-summary">{summary}</p>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 }
+
+export default PostList;
