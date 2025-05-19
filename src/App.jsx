@@ -62,7 +62,7 @@ function App() {
       </header>
       <LayoutWithSidebar />
       <footer className="app-footer">
-        <p>&copy; {new Date().getFullYear()} Your Name/Blog Name. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Jeriel Martinez Flores. All rights reserved.</p>
         <p><a href="/rss.xml" target="_blank" rel="noopener noreferrer">RSS Feed</a></p>
       </footer>
     </>
