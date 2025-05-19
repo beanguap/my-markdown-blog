@@ -17,109 +17,55 @@ a:hover {
 /* Main App Container */
 #root {
   width: 100%;
-  max-width: 850px; /* Slightly wider for a more spacious feel */
+  max-width: 850px;
   margin: 0 auto;
-  padding: 20px; /* Add padding around the entire app content */
+  padding: 20px;
   box-sizing: border-box;
+  background-color: var(--bg-color); /* Use CSS var */
 }
 
 /* Navigation Bar - styled like a status bar or top bar */
 .navbar {
   width: 100%;
-  padding: 8px 15px; /* Adjust padding */
+  padding: 8px 15px;
   margin-bottom: 25px;
-  border: 1px solid #c0c0c0; /* More defined border */
-  background-color: #e9e9e9; /* Light gray background for the bar */
+  border: 1px solid var(--border-color); /* Use CSS var */
+  background-color: var(--navbar-bg-color); /* Use CSS var */
   text-align: left;
   box-sizing: border-box;
-  border-radius: 0; /* Sharp corners */
+  border-radius: 0;
+  display: flex; /* For aligning items */
+  justify-content: space-between; /* Space between home link and theme toggle */
+  align-items: center;
 }
 
 .navbar a {
-  color: #333;
-  font-weight: normal; /* Less emphasis, more utilitarian */
+  color: var(--text-color); /* Use CSS var */
+  font-weight: normal;
   font-size: 1em;
   margin-right: 20px;
   text-decoration: none;
 }
 
 .navbar a:hover {
-  color: #2E8B57; /* Forest Green for hover */
+  color: var(--link-hover-color); /* Use CSS var */
   text-decoration: none;
 }
 
-/* Main Layout with Sidebar */
-.main-layout {
-  display: flex;
-  width: 100%;
-  margin-top: 20px; /* Add some space below the navbar */
-}
-
-.sidebar {
-  width: 250px; /* Width of the sidebar */
-  min-width: 200px; /* Minimum width */
-  padding: 15px;
-  border-right: 1px solid #c0c0c0; /* Separator line */
-  background-color: #f0f0f0; /* Slightly different background for sidebar */
-  margin-right: 20px; /* Space between sidebar and content */
-  height: calc(100vh - 100px); /* Adjust height based on navbar and padding */
-  overflow-y: auto; /* Scroll if content overflows */
-  border-radius: 0; /* Sharp corners */
-}
-
-.sidebar-title {
-  font-size: 1.2em;
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #333;
-  border-bottom: 1px solid #dcdcdc;
-  padding-bottom: 8px;
-}
-
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar nav li {
-  margin-bottom: 8px;
-}
-
-.sidebar nav a {
-  text-decoration: none;
-  color: #2E8B57; /* Forest Green for links */
-  font-size: 0.95em;
-  display: block; /* Make links block for better click area */
-  padding: 5px 8px;
-  border-radius: 0; /* Sharp corners for links */
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.sidebar nav a:hover {
-  background-color: #e0e0e0;
-  color: #20603D; /* Darker Forest Green on hover */
-}
-
-.sidebar nav a.active-link {
-  background-color: #2E8B57; /* Forest Green background for active link */
-  color: #ffffff; /* White text for active link */
-  font-weight: bold;
-}
-
-.content-area {
-  flex-grow: 1; /* Takes up remaining space */
-  padding-left: 0; /* Remove padding if sidebar adds margin */
+.theme-toggle-button {
+  /* Uses button styles from index.css */
+  padding: 0.4em 0.8em;
+  font-size: 0.85em;
 }
 
 /* Common styling for content panes (PostList and PostContainer) */
 .content-pane {
   padding: 20px;
-  background-color: #ffffff; /* White background for content */
-  border: 1px solid #c0c0c0; /* Consistent defined border */
-  border-radius: 0; /* Sharp corners */
-  box-shadow: none; /* Remove existing shadow for a flatter look */
-  margin-bottom: 25px; /* Space between panes */
+  background-color: var(--content-bg-color); /* Use CSS var */
+  border: 1px solid var(--content-border-color); /* Use CSS var */
+  border-radius: 0;
+  box-shadow: none;
+  margin-bottom: 25px;
 }
 
 /* headings */
@@ -135,12 +81,13 @@ small {
 /* .post-list is now mostly styled by .content-pane */
 
 .post-list h1 {
-  font-size: 1.6em; /* Slightly smaller */
+  font-size: 1.6em;
   margin-top: 0;
   margin-bottom: 15px;
-  border-bottom: 1px solid #dcdcdc; /* Lighter border for heading */
+  border-bottom: 1px solid var(--heading-border-color); /* Use CSS var */
   padding-bottom: 10px;
-  text-align: left; /* Ensure headings are left-aligned */
+  text-align: left;
+  color: var(--text-color); /* Use CSS var */
 }
 
 .post-list ul {
@@ -152,7 +99,7 @@ small {
 .post-list li {
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 1px dashed #dcdcdc; /* Lighter dashed separator */
+  border-bottom: 1px dashed var(--heading-border-color); /* Use CSS var */
 }
 .post-list li:last-child {
   border-bottom: none;
@@ -161,17 +108,18 @@ small {
 }
 
 .post-list li a {
-  font-size: 1.15em; /* Adjust size */
+  font-size: 1.15em;
   font-weight: bold;
-  color: #2E8B57;
+  color: var(--link-color); /* Use CSS var */
 }
 .post-list li a:hover {
-  color: #20603D;
+  color: var(--link-hover-color); /* Use CSS var */
 }
 
 .post-list small {
   display: block;
-  color: #666; /* Slightly darker gray for meta info */
+  color: var(--text-color); /* Use CSS var, adjust if a lighter/dimmer version is needed */
+  opacity: 0.7; /* Example for dimmer meta text */
   font-size: 0.85em;
   margin-top: 4px;
   margin-bottom: 6px;
@@ -181,7 +129,8 @@ small {
 .post-list p {
   margin-top: 5px;
   margin-bottom: 0;
-  color: #444; /* Slightly darker paragraph text */
+  color: var(--text-color); /* Use CSS var */
+  opacity: 0.9; /* Example for slightly dimmer paragraph text */
   font-size: 0.95em;
   line-height: 1.6;
   text-align: left;
@@ -193,7 +142,7 @@ small {
 .post-container .back-link {
   display: inline-block;
   margin-bottom: 20px;
-  color: #2E8B57;
+  color: var(--link-color); /* Use CSS var */
   font-size: 0.9em;
   text-align: left;
 }
@@ -202,15 +151,17 @@ small {
 }
 
 .post-container h1 {
-  font-size: 1.8em; /* Adjust size */
+  font-size: 1.8em;
   margin-top: 0;
   margin-bottom: 8px;
   text-align: left;
+  color: var(--text-color); /* Use CSS var */
 }
 
 .post-container small {
   display: block;
-  color: #666;
+  color: var(--text-color); /* Use CSS var */
+  opacity: 0.7;
   font-size: 0.85em;
   margin-bottom: 20px;
   text-align: left;
@@ -218,21 +169,24 @@ small {
 
 /* Markdown Content Styling */
 .post-container .react-markdown-content {
-  text-align: left; /* Ensure markdown content is left-aligned */
+  text-align: left;
+  color: var(--text-color); /* Use CSS var */
 }
 
 .post-container .react-markdown-content h2 {
   font-size: 1.5em;
   margin-top: 25px;
   margin-bottom: 12px;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid var(--heading-border-color); /* Use CSS var */
   padding-bottom: 8px;
+  color: var(--text-color); /* Use CSS var */
 }
 
 .post-container .react-markdown-content h3 {
   font-size: 1.3em;
   margin-top: 20px;
   margin-bottom: 10px;
+  color: var(--text-color); /* Use CSS var */
 }
 
 .post-container .react-markdown-content p {
@@ -241,23 +195,14 @@ small {
   font-size: 0.95em;
 }
 
-.post-container .react-markdown-content ul,
-.post-container .react-markdown-content ol {
-  margin-bottom: 15px;
-  padding-left: 25px;
-}
-
-.post-container .react-markdown-content li {
-  margin-bottom: 8px;
-}
-
 .post-container .react-markdown-content blockquote {
   margin-left: 0;
-  padding: 10px 15px; /* Add some padding */
-  border-left: 3px solid #999; /* Gray border for blockquote */
-  background-color: #f9f9f9; /* Very light gray background */
-  color: #555;
-  font-style: normal; /* Less emphasis, more block-like */
+  padding: 10px 15px;
+  border-left: 3px solid var(--blockquote-border-color); /* Use CSS var */
+  background-color: var(--blockquote-bg-color); /* Use CSS var */
+  color: var(--text-color); /* Use CSS var */
+  opacity: 0.9;
+  font-style: normal;
 }
 
 .post-container .react-markdown-content img {
@@ -265,35 +210,192 @@ small {
   height: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 1px solid #c0c0c0; /* Consistent border */
+  border: 1px solid var(--border-color); /* Use CSS var */
 }
 
 /* Code Blocks */
 .post-container pre {
-  background-color: #f0f0f0 !important;
-  color: #333 !important;
-  padding: 12px; /* Adjust padding */
+  background-color: var(--code-bg-color) !important; /* Use CSS var */
+  color: var(--code-text-color) !important; /* Use CSS var */
+  padding: 12px;
   border-radius: 0;
   overflow-x: auto;
-  border: 1px solid #c0c0c0; /* Consistent border */
+  border: 1px solid var(--border-color); /* Use CSS var */
   font-size: 0.9em;
-  line-height: 1.4; /* Improve readability of code */
+  line-height: 1.4;
 }
 
 .post-container pre code {
   font-family: 'Courier New', Courier, monospace !important;
   background-color: transparent !important;
-  color: inherit !important;
-  font-size: 1em !important; /* Ensure code inside pre matches pre's font size */
+  color: inherit !important; /* Inherits from pre which uses var */
+  font-size: 1em !important;
 }
 
 /* Inline code */
 .post-container :not(pre) > code {
   font-family: 'Courier New', Courier, monospace;
-  background-color: #e0e0e0; /* Slightly lighter gray for inline code */
+  background-color: var(--inline-code-bg-color); /* Use CSS var */
   padding: 2px 5px;
-  border-radius: 0; /* Sharp corners */
+  border-radius: 0;
   font-size: 0.9em;
-  color: #222; /* Darker gray for inline code text */
-  border: 1px solid #d0d0d0; /* Subtle border for inline code */
+  color: var(--inline-code-text-color); /* Use CSS var */
+  border: 1px solid var(--inline-code-border-color); /* Use CSS var */
+}
+
+/* Sidebar Search */
+.sidebar-search {
+  width: calc(100% - 16px); /* Full width minus padding */
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color); /* Use CSS var */
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 0.9em;
+  background-color: var(--content-bg-color); /* Use CSS var */
+  color: var(--text-color); /* Use CSS var */
+}
+
+/* Main Layout with Sidebar */
+.main-layout {
+  display: flex;
+  width: 100%;
+  margin-top: 0; /* Removed margin as #root has padding */
+}
+
+.sidebar {
+  width: 250px;
+  min-width: 200px;
+  padding: 15px;
+  border-right: 1px solid var(--sidebar-border-color); /* Use CSS var */
+  background-color: var(--sidebar-bg-color); /* Use CSS var */
+  margin-right: 20px;
+  height: calc(100vh - 120px); /* Adjusted based on potential navbar height and #root padding */
+  overflow-y: auto;
+  border-radius: 0;
+}
+
+/* Sidebar Title */
+.sidebar-title {
+  font-size: 1.2em;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--text-color); /* Use CSS var */
+  border-bottom: 1px solid var(--heading-border-color); /* Use CSS var */
+  padding-bottom: 8px;
+}
+
+/* Sidebar Navigation */
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav li {
+  margin-bottom: 8px;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+  color: var(--link-color); /* Use CSS var */
+  font-size: 0.95em;
+  display: block;
+  padding: 5px 8px;
+  border-radius: 0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar nav a:hover {
+  background-color: var(--sidebar-link-hover-bg); /* Use CSS var */
+  color: var(--link-hover-color); /* Use CSS var */
+}
+
+.sidebar nav a.active-link {
+  background-color: var(--sidebar-link-active-bg); /* Use CSS var */
+  color: var(--sidebar-link-active-text); /* Use CSS var */
+  font-weight: bold;
+}
+
+.content-area {
+  flex-grow: 1;
+  padding-left: 0;
+}
+
+/* Adjusted styles for dark theme compatibility */
+/* These styles assume the existence of corresponding CSS variables for dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --link-color: #bb86fc;
+    --link-hover-color: #3700b3;
+    --navbar-bg-color: #1f1f1f;
+    --border-color: #333;
+    --heading-border-color: #444;
+    --content-bg-color: #1e1e1e;
+    --content-border-color: #333;
+    --sidebar-bg-color: #1f1f1f;
+    --sidebar-border-color: #333;
+    --blockquote-bg-color: #2c2c2c;
+    --blockquote-border-color: #444;
+    --code-bg-color: #2d2d2d;
+    --code-text-color: #e0e0e0;
+    --inline-code-bg-color: #3a3a3a;
+    --inline-code-text-color: #e0e0e0;
+    --inline-code-border-color: #444;
+  }
+
+  /* Additional adjustments for dark theme */
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  .navbar {
+    background-color: #1f1f1f;
+    border-color: #333;
+  }
+
+  .sidebar {
+    background-color: #1f1f1f;
+    border-color: #333;
+  }
+
+  .content-pane {
+    background-color: #1e1e1e;
+    border-color: #333;
+  }
+
+  .post-list h1,
+  .post-container h1 {
+    color: #e0e0e0;
+  }
+
+  .post-list li a,
+  .post-container .back-link {
+    color: #bb86fc;
+  }
+
+  .post-list li a:hover,
+  .post-container .back-link:hover {
+    color: #3700b3;
+  }
+
+  small {
+    color: #b0b0b0;
+  }
+
+  /* Theme toggle button specific styles */
+  .theme-toggle-button {
+    background-color: #bb86fc;
+    color: #121212;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .theme-toggle-button:hover {
+    background-color: #3700b3;
+  }
 }

@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/generate-rss.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "buffer": "^6.0.3",
+    "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
