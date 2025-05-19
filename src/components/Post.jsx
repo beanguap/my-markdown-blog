@@ -1,27 +1,46 @@
-import { useParams, Link } from "react-router-dom";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ReactMarkdown from "react-markdown";
 import matter from "gray-matter";
+import { useParams, Link } from "react-router-dom";
 
-// Get all posts as raw
-const files = import.meta.glob("../posts/*.md", { as: "raw", eager: true });
+const files = import.meta.glob("../posts/*.md", { query: "?raw", import: "default", eager: true });
 
 export default function Post() {
-  // Get slug from URL
   const { slug } = useParams();
-
-  // Find the matching file
   const fileKey = Object.keys(files).find((key) => key.endsWith(`${slug}.md`));
   if (!fileKey) return <div>Post not found</div>;
 
-  // Parse frontmatter and content
-  const { content, data } = matter(files[fileKey]);
+  const { data, content } = matter(files[fileKey]);
 
   return (
-    <div>
-      <Link to="/">← Back to Posts</Link>
+    <div className="post-container">
+      <Link to="/">← Back</Link>
       <h1>{data.title}</h1>
       <small>{data.date}</small>
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <ReactMarkdown
+        components={{
+          code({ inline, className, children, ...props }) {
+            const match = /language-(\w+)/.exec(className || "");
+            return !inline && match ? (
+              <SyntaxHighlighter
+                style={dracula}
+                language={match[1]}
+                PreTag="div"
+                {...props}
+              >
+                {String(children).replace(/\n$/, "")}
+              </SyntaxHighlighter>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            );
+          },
+        }}
+      >
+        {content}
+      </ReactMarkdown>
     </div>
   );
 }
