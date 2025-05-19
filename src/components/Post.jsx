@@ -9,12 +9,12 @@ const files = import.meta.glob("../posts/*.md", { query: "?raw", import: "defaul
 export default function Post() {
   const { slug } = useParams();
   const fileKey = Object.keys(files).find((key) => key.endsWith(`${slug}.md`));
-  if (!fileKey) return <div>Post not found</div>;
+  if (!fileKey) return <div className="post-container content-pane">Post not found</div>;
 
   const { data, content } = matter(files[fileKey]);
 
   return (
-    <div className="post-container">
+    <div className="post-container content-pane">
       <Link to="/">← Back</Link>
       <h1>{data.title}</h1>
       <small>{data.date}</small>

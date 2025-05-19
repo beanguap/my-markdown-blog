@@ -14,15 +14,112 @@ a:hover {
   text-decoration: underline;
 }
 
-/* container */
-.post-list,
-.post-container {
-  max-width: 700px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+/* Main App Container */
+#root {
+  width: 100%;
+  max-width: 850px; /* Slightly wider for a more spacious feel */
+  margin: 0 auto;
+  padding: 20px; /* Add padding around the entire app content */
+  box-sizing: border-box;
+}
+
+/* Navigation Bar - styled like a status bar or top bar */
+.navbar {
+  width: 100%;
+  padding: 8px 15px; /* Adjust padding */
+  margin-bottom: 25px;
+  border: 1px solid #c0c0c0; /* More defined border */
+  background-color: #e9e9e9; /* Light gray background for the bar */
+  text-align: left;
+  box-sizing: border-box;
+  border-radius: 0; /* Sharp corners */
+}
+
+.navbar a {
+  color: #333;
+  font-weight: normal; /* Less emphasis, more utilitarian */
+  font-size: 1em;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #2E8B57; /* Forest Green for hover */
+  text-decoration: none;
+}
+
+/* Main Layout with Sidebar */
+.main-layout {
+  display: flex;
+  width: 100%;
+  margin-top: 20px; /* Add some space below the navbar */
+}
+
+.sidebar {
+  width: 250px; /* Width of the sidebar */
+  min-width: 200px; /* Minimum width */
+  padding: 15px;
+  border-right: 1px solid #c0c0c0; /* Separator line */
+  background-color: #f0f0f0; /* Slightly different background for sidebar */
+  margin-right: 20px; /* Space between sidebar and content */
+  height: calc(100vh - 100px); /* Adjust height based on navbar and padding */
+  overflow-y: auto; /* Scroll if content overflows */
+  border-radius: 0; /* Sharp corners */
+}
+
+.sidebar-title {
+  font-size: 1.2em;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 1px solid #dcdcdc;
+  padding-bottom: 8px;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav li {
+  margin-bottom: 8px;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+  color: #2E8B57; /* Forest Green for links */
+  font-size: 0.95em;
+  display: block; /* Make links block for better click area */
+  padding: 5px 8px;
+  border-radius: 0; /* Sharp corners for links */
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar nav a:hover {
+  background-color: #e0e0e0;
+  color: #20603D; /* Darker Forest Green on hover */
+}
+
+.sidebar nav a.active-link {
+  background-color: #2E8B57; /* Forest Green background for active link */
+  color: #ffffff; /* White text for active link */
+  font-weight: bold;
+}
+
+.content-area {
+  flex-grow: 1; /* Takes up remaining space */
+  padding-left: 0; /* Remove padding if sidebar adds margin */
+}
+
+/* Common styling for content panes (PostList and PostContainer) */
+.content-pane {
+  padding: 20px;
+  background-color: #ffffff; /* White background for content */
+  border: 1px solid #c0c0c0; /* Consistent defined border */
+  border-radius: 0; /* Sharp corners */
+  box-shadow: none; /* Remove existing shadow for a flatter look */
+  margin-bottom: 25px; /* Space between panes */
 }
 
 /* headings */
@@ -34,45 +131,169 @@ small {
   color: #666;
 }
 
-/* list items */
+/* Post List Styling */
+/* .post-list is now mostly styled by .content-pane */
+
+.post-list h1 {
+  font-size: 1.6em; /* Slightly smaller */
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #dcdcdc; /* Lighter border for heading */
+  padding-bottom: 10px;
+  text-align: left; /* Ensure headings are left-aligned */
+}
+
 .post-list ul {
   list-style: none;
   padding: 0;
-}
-.post-list li + li {
-  margin-top: 1.5rem;
-  border-top: 1px solid #eee;
-  padding-top: 1.5rem;
+  text-align: left; /* Ensure list items are left-aligned */
 }
 
-/* markdown content */
-.post-container img {
-  max-width: 100%;
+.post-list li {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #dcdcdc; /* Lighter dashed separator */
 }
-.post-container pre {
-  background: #2d2d2d;
-  padding: 1rem;
-  border-radius: 4px;
-  overflow-x: auto;
+.post-list li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-/* navigation bar */
-.navbar {
-  width: 100%;
-  background: #0070f3;
-  padding: 1rem 0;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-  text-align: center;
-}
-.navbar a {
-  color: #fff;
+.post-list li a {
+  font-size: 1.15em; /* Adjust size */
   font-weight: bold;
-  font-size: 1.1rem;
-  margin: 0 1rem;
-  text-decoration: none;
-  transition: color 0.2s;
+  color: #2E8B57;
 }
-.navbar a:hover {
-  color: #e0e0e0;
+.post-list li a:hover {
+  color: #20603D;
+}
+
+.post-list small {
+  display: block;
+  color: #666; /* Slightly darker gray for meta info */
+  font-size: 0.85em;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.post-list p {
+  margin-top: 5px;
+  margin-bottom: 0;
+  color: #444; /* Slightly darker paragraph text */
+  font-size: 0.95em;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* Post Container Styling */
+/* .post-container is now mostly styled by .content-pane */
+
+.post-container .back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #2E8B57;
+  font-size: 0.9em;
+  text-align: left;
+}
+.post-container .back-link:hover {
+  text-decoration: underline;
+}
+
+.post-container h1 {
+  font-size: 1.8em; /* Adjust size */
+  margin-top: 0;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.post-container small {
+  display: block;
+  color: #666;
+  font-size: 0.85em;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Markdown Content Styling */
+.post-container .react-markdown-content {
+  text-align: left; /* Ensure markdown content is left-aligned */
+}
+
+.post-container .react-markdown-content h2 {
+  font-size: 1.5em;
+  margin-top: 25px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #dcdcdc;
+  padding-bottom: 8px;
+}
+
+.post-container .react-markdown-content h3 {
+  font-size: 1.3em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.post-container .react-markdown-content p {
+  line-height: 1.7;
+  margin-bottom: 15px;
+  font-size: 0.95em;
+}
+
+.post-container .react-markdown-content ul,
+.post-container .react-markdown-content ol {
+  margin-bottom: 15px;
+  padding-left: 25px;
+}
+
+.post-container .react-markdown-content li {
+  margin-bottom: 8px;
+}
+
+.post-container .react-markdown-content blockquote {
+  margin-left: 0;
+  padding: 10px 15px; /* Add some padding */
+  border-left: 3px solid #999; /* Gray border for blockquote */
+  background-color: #f9f9f9; /* Very light gray background */
+  color: #555;
+  font-style: normal; /* Less emphasis, more block-like */
+}
+
+.post-container .react-markdown-content img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #c0c0c0; /* Consistent border */
+}
+
+/* Code Blocks */
+.post-container pre {
+  background-color: #f0f0f0 !important;
+  color: #333 !important;
+  padding: 12px; /* Adjust padding */
+  border-radius: 0;
+  overflow-x: auto;
+  border: 1px solid #c0c0c0; /* Consistent border */
+  font-size: 0.9em;
+  line-height: 1.4; /* Improve readability of code */
+}
+
+.post-container pre code {
+  font-family: 'Courier New', Courier, monospace !important;
+  background-color: transparent !important;
+  color: inherit !important;
+  font-size: 1em !important; /* Ensure code inside pre matches pre's font size */
+}
+
+/* Inline code */
+.post-container :not(pre) > code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #e0e0e0; /* Slightly lighter gray for inline code */
+  padding: 2px 5px;
+  border-radius: 0; /* Sharp corners */
+  font-size: 0.9em;
+  color: #222; /* Darker gray for inline code text */
+  border: 1px solid #d0d0d0; /* Subtle border for inline code */
 }
